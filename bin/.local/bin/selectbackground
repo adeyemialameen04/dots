@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+BACKGROUNDS_DIR="$HOME/.local/bin/backgrounds"
+
+chosen=$(ls "$BACKGROUNDS_DIR" | rofi -dmenu -i -p "Select background:")
+
+if [ -n "$chosen" ]; then
+    feh --bg-scale "$BACKGROUNDS_DIR/$chosen"
+
+    sed -i "s|^export BACKGROUND=.*|export BACKGROUND=\"$chosen\"|" "$HOME/.zshrc"
+
+    i3_config="$HOME/.config/i3/config"
+    sed -i "s|^exec_always feh --bg-scale.*|exec_always feh --bg-scale $BACKGROUNDS_DIR/$chosen|" "$i3_config"
+
+    # echo "Background set to $chosen"
+    # echo "i3 config and .zshrc updated"
+else
+    echo "No background selected"
+fi

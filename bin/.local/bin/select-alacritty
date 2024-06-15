@@ -1,0 +1,16 @@
+#!/usr/bin/bash
+
+THEMES_DIR="$HOME/.local/bin/alacritty-themes"
+chosen=$(ls "$THEMES_DIR" | rofi -dmenu -i -p "Alacritty themes: ")
+echo "$chosen"
+
+if [ -n "$chosen" ]; then
+	alacritty_config="$HOME/.config/alacritty/alacritty.toml"
+
+	sed -i '/^import/,/]/c\
+import = ["'"$THEMES_DIR/$chosen"'"]
+' "$alacritty_config"
+
+else
+	echo "No theme selected"
+fi

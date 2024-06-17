@@ -18,7 +18,6 @@ source "${ZINIT_HOME}/zinit.zsh"
 zinit ice depth=1; zinit light romkatv/powerlevel10k
 
 # Add in zsh plugins
-zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 
@@ -114,3 +113,4 @@ export NVM_DIR="$HOME/.nvm"
 # Shell integrations
 eval "$(fzf --zsh)"
 eval "$(zoxide init zsh)"
+zinit light zsh-users/zsh-syntax-highlighting

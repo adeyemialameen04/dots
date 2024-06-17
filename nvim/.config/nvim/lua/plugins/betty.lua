@@ -2,6 +2,7 @@
 return {
   {
     "bstevary/betty-in-vim",
+    enabled = false,
     event = {
       "FileType c",
     },

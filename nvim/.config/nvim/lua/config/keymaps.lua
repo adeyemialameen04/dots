@@ -11,6 +11,7 @@ set("n", "<S-Tab>", "<<_", { noremap = true, silent = true })
 set("n", "<Tab>", ">>_", { noremap = true, silent = true })
 -- Select all
 set("n", "<C-a>", "gg<S-v>G", { desc = "Select all", noremap = true, silent = true })
+set("i", "<C-x>", "dd", { desc = "Delete line", noremap = true, silent = true })
 
 -- make file executable
 set("n", "<leader>cx", "<cmd>!chmod +x % >/dev/null 2>&1<cr>", { desc = "Make file executable", silent = true })

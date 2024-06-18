@@ -6,6 +6,7 @@ return {
     -- change a keymap
     { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find Files" },
     { "<leader>r", "<cmd>Telescope oldfiles<cr>", desc = "Recent files" },
+    { "<leader>th", "<cmd>Telescope themes<CR>", desc = "telescope nvchad themes" },
     -- add a keymap to browse plugin files
     {
       "<leader>fp",

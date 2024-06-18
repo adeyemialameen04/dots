@@ -1,14 +1,15 @@
 return {
   {
     "folke/tokyonight.nvim",
+    lazy = false,
   },
   {
     "ellisonleao/gruvbox.nvim",
   },
   {
     "catppuccin/nvim",
-    -- lazy = true,
     name = "catppuccin",
+    lazy = false,
     opts = {
       integrations = {
         aerial = true,
@@ -44,6 +45,16 @@ return {
         treesitter = true,
         treesitter_context = true,
         which_key = true,
+      },
+    },
+  },
+  {
+    "LazyVim/LazyVim",
+    opts = {
+      colorscheme = "catppuccin-mocha",
+      root = {
+        -- Force using the current working directory as root
+        fallback = vim.fn.getcwd,
       },
     },
   },

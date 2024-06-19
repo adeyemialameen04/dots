@@ -18,26 +18,11 @@ return {
     },
   },
   config = function()
-    -- local icons = require("utils.icons").neotree
     local git_available = vim.fn.executable("git") == 1
-    -- local sources = {
-    --   { source = "filesystem", display_name = icons.folder .. " " .. "Files" },
-    --   { source = "buffers", display_name = icons.buffer .. " " .. "Buffers" },
-    -- }
-    -- if git_available then
-    --   table.insert(sources, 3, { source = "git_status", display_name = icons.git .. " " .. "Git" })
-    -- end
     require("neo-tree").setup({
       close_if_last_window = true,
       popup_border_style = "single",
       enable_git_status = git_available,
-      -- sources = { "filesystem", "buffers", git_available and "git_status" or nil },
-      -- source_selector = {
-      --   winbar = true,
-      --   content_layout = "center",
-      --   -- tabs_layout = "equal",
-      --   sources = sources,
-      -- },
       enable_modified_markers = true,
       enable_diagnostics = true,
       sort_case_insensitive = true,
@@ -53,16 +38,16 @@ return {
         git_status = {
           symbols = {
             -- Change type
-            -- added = " ",
-            -- deleted = " ",
-            -- modified = " ",
-            -- renamed = " ",
+            added = " ",
+            deleted = " ",
+            modified = " ",
+            renamed = " ",
             -- Status type
-            -- untracked = " ",
-            -- ignored = " ",
-            -- unstaged = " ",
-            -- staged = " ",
-            -- conflict = " ",
+            untracked = " ",
+            ignored = " ",
+            unstaged = " ",
+            staged = " ",
+            conflict = " ",
           },
         },
       },
@@ -72,6 +57,11 @@ return {
         mappings = {
           ["h"] = "prev_source",
           ["l"] = "next_source",
+          ["D"] = function(state)
+            local node = state.tree:get_node()
+            local path = node:get_id()
+            vim.fn.system("trash " .. vim.fn.fnameescape(path))
+          end,
         },
       },
       filesystem = {

@@ -1,0 +1,58 @@
+# Kitty configuration for X11 and i3wm
+
+# Import theme (you'll need to convert the Catppuccin theme to Kitty format)
+include ~/.config/kitty/themes/mocha.conf
+
+# Terminal
+term xterm-256color
+
+# Font configuration
+font_family      Meslo LGM Nerd Font
+# bold_font        Meslo LGM Nerd Font Bold
+# italic_font      Meslo LGM Nerd Font Italic
+# bold_italic_font Meslo LGM Nerd Font Bold Italic
+font_size 10.0
+
+# Cursor configuration
+cursor_shape beam
+cursor_blink_interval 0.5
+cursor_beam_thickness 1.5
+
+# Scrollback
+scrollback_lines 10000
+
+# Mouse
+copy_on_select no
+
+# Window
+background_opacity 0.8
+dynamic_background_opacity yes
+
+# Shell
+shell /usr/bin/zsh
+
+# Key bindings
+map super+shift+return new_window
+
+# Window class (for i3wm)
+linux_display_server x11
+# x11_hide_window_decorations yes
+
+# Additional Kitty-specific settings
+enable_audio_bell no
+window_padding_width 4
+
+# Allow changing font size with shortcuts (optional)
+map ctrl+shift+plus change_font_size all +2.0
+map ctrl+shift+minus change_font_size all -2.0
+map ctrl+shift+backspace change_font_size all 0
+
+# URL handling (optional)
+url_color #0087bd
+url_style curly
+open_url_with default
+
+# Performance tweaks for X11
+sync_to_monitor yes
+repaint_delay 10
+input_delay 3

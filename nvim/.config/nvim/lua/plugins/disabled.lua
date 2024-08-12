@@ -1,3 +1,3 @@
 return {
-  { "echasnovski/mini.ai", lazy = false, enabled = false },
+  { "echasnovski/mini.ai", lazy = false, enabled = true },
 }

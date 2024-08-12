@@ -9,7 +9,7 @@ return {
         "css-lsp",
         "eslint-lsp",
         "prettierd",
-        "typescript-language-server",
+        -- "typescript-language-server",
         "ast-grep",
         "tailwindcss-language-server",
         "clangd",

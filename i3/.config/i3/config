@@ -54,9 +54,12 @@ bindsym $mod+d exec --no-startup-id rofi -show combi
 bindsym $mod+Shift+v exec --no-startup-id clipmenu
 bindsym $mod+l exec --no-startup-id ~/.local/bin/powermenu
 bindsym $mod+Shift+w exec --no-startup-id ~/.local/bin/wifimenu
+bindsym $mod+Shift+t exec --no-startup-id ~/.local/bin/tmux_session.sh
 bindsym $mod+Shift+b exec --no-startup-id ~/.local/bin/selectbackground
+bindsym $mod+Shift+f exec --no-startup-id rofi -modi "fb:~/.local/bin/rofi-file-browser.sh" -show fb
 bindsym $mod+i exec --no-startup-id nvim ~/dots/i3/.config/i3/config
 bindsym $mod+w exec --no-startup-id chromium
+bindsym $mod+z exec --no-startup-id zen-browser
 bindsym --release Print exec ~/.local/bin/screenshot select
 bindsym --release $mod+e exec --no-startup-id --floating thunar
 bindsym --release Shift+Print exec ~/.local/bin/screenshot windows
@@ -75,7 +78,8 @@ gaps outer 10
 
 # start a terminal
 # bindsym $mod+Return exec i3-sensible-terminal
-bindsym $mod+Return exec --no-startup-id kitty
+bindsym $mod+Return exec --no-startup-id alacritty
+bindsym $mod+k exec --no-startup-id kitty
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -115,7 +119,7 @@ bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+Shift+s layout stacking
-bindsym $mod+Shift+t layout tabbed
+# bindsym $mod+Shift+t layout tabbed
 bindsym $mod+Shift+n layout toggle split
 
 # toggle tiling / floating
@@ -178,7 +182,7 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+# bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -206,7 +210,6 @@ mode "resize" {
 }
 
 bindsym $mod+r mode "resize"
-
 # Windows specific
 for_window [class="Thunar" floating] resize set 850 580
 for_window [class="Alacritty" floating] resize set 700 580

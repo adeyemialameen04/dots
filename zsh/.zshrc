@@ -16,7 +16,7 @@ source "${ZINIT_HOME}/zinit.zsh"
 
 # Adds powelevel10k
 zinit ice depth=1; zinit light romkatv/powerlevel10k
-
+typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
 # Add in zsh plugins
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
@@ -101,7 +101,6 @@ alias ff="fastfetch"
 alias mifi='nmcli device wifi connect "Airtel 4G MiFi_861E" password 54111296'
 alias phone='nmcli device wifi connect "I USE ARCH BTW" password 54150465034'
 alias vim="nvim"
-alias cd="z"
 alias ls="lsd"
 export PATH="$PATH:$HOME/.local/bin"
 [ -f ~/.zsh_secrets ] && source ~/.zsh_secrets

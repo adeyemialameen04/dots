@@ -1,0 +1,14 @@
+#!/bin/zsh
+
+# Get the current status of Warp
+warp_status=$(warp-cli status | grep -oP '(?<=Status update: ).*')
+
+# Prepare options with the current status displayed as a label
+chosen=$(printf "🟢 Current Status: %s\n  Off\n  On" "$warp_status" | rofi -dmenu -i -p "Warp Cli: ")
+
+# Handle the selected option
+case "$chosen" in
+    "  Off") warp-cli disconnect ;;
+    "  On") warp-cli connect ;;
+    *) exit 1 ;;
+esac

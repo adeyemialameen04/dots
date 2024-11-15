@@ -70,7 +70,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "catppuccin-mocha",
+      colorscheme = "kanagawa",
       root = {
         -- Force using the current working directory as root
         fallback = vim.fn.getcwd,

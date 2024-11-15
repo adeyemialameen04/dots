@@ -6,3 +6,10 @@ vim.cmd([[
   autocmd FileType c setlocal shiftwidth=4
   autocmd FileType c setlocal noexpandtab
 ]])
+
+-- vim.api.nvim_create_autocmd("BufWritePre", {
+--   pattern = { "*.tsx", "*.jsx", "*.js", "*.html" },
+--   callback = function()
+--     vim.cmd("silent !rustywind --write " .. vim.fn.expand("%"))
+--   end,
+-- })

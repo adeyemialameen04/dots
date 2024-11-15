@@ -13,8 +13,8 @@ return {
     },
     {
       "<leader>e",
-      "<cmd>Neotree toggle left<cr>",
-      desc = "Left File Explorer",
+      "<cmd>Neotree toggle right<cr>",
+      desc = "Right File Explorer",
     },
   },
   config = function()
@@ -51,8 +51,9 @@ return {
           },
         },
       },
+      -- Set the default window position to "right"
       window = {
-        position = "left",
+        position = "right",
         width = 40,
         mappings = {
           ["h"] = "prev_source",

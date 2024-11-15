@@ -68,131 +68,9 @@ return {
         -- LSP Server Settings
         ---@type lspconfig.options
         servers = {
+
           tsserver = {
             enabled = false,
-          },
-
-          vtsls = {
-            -- explicitly add default filetypes, so that we can extend
-            -- them in related extras
-            filetypes = {
-              "javascript",
-              "javascriptreact",
-              "javascript.jsx",
-              "typescript",
-              "typescriptreact",
-              "typescript.tsx",
-            },
-            settings = {
-              complete_function_calls = true,
-              vtsls = {
-                enableMoveToFileCodeAction = true,
-                autoUseWorkspaceTsdk = true,
-                experimental = {
-                  completion = {
-                    enableServerSideFuzzyMatch = true,
-                  },
-                },
-              },
-              typescript = {
-                updateImportsOnFileMove = { enabled = "always" },
-                suggest = {
-                  completeFunctionCalls = true,
-                },
-                inlayHints = {
-                  enumMemberValues = { enabled = true },
-                  functionLikeReturnTypes = { enabled = true },
-                  parameterNames = { enabled = "literals" },
-                  parameterTypes = { enabled = true },
-                  propertyDeclarationTypes = { enabled = true },
-                  variableTypes = { enabled = false },
-                },
-              },
-            },
-            keys = {
-              {
-                "gD",
-                function()
-                  local params = vim.lsp.util.make_position_params()
-                  LazyVim.lsp.execute({
-                    command = "typescript.goToSourceDefinition",
-                    arguments = { params.textDocument.uri, params.position },
-                    open = true,
-                  })
-                end,
-                desc = "Goto Source Definition",
-              },
-              {
-                "gR",
-                function()
-                  LazyVim.lsp.execute({
-                    command = "typescript.findAllFileReferences",
-                    arguments = { vim.uri_from_bufnr(0) },
-                    open = true,
-                  })
-                end,
-                desc = "File References",
-              },
-              {
-                "<leader>co",
-                LazyVim.lsp.action["source.organizeImports"],
-                desc = "Organize Imports",
-              },
-              {
-                "<leader>cM",
-                LazyVim.lsp.action["source.addMissingImports.ts"],
-                desc = "Add missing imports",
-              },
-              {
-                "<leader>cu",
-                LazyVim.lsp.action["source.removeUnused.ts"],
-                desc = "Remove unused imports",
-              },
-              {
-                "<leader>cD",
-                LazyVim.lsp.action["source.fixAll.ts"],
-                desc = "Fix all diagnostics",
-              },
-              {
-                "<leader>cV",
-                function()
-                  LazyVim.lsp.execute({ command = "typescript.selectTypeScriptVersion" })
-                end,
-                desc = "Select TS workspace version",
-              },
-            },
-          },
-
-          lua_ls = {
-            -- mason = false, -- set to false if you don't want this server to be installed with mason
-            -- Use this to add any additional keymaps
-            -- for specific lsp servers
-            -- ---@type LazyKeysSpec[]
-            -- keys = {},
-            settings = {
-              Lua = {
-                workspace = {
-                  checkThirdParty = false,
-                },
-                codeLens = {
-                  enable = true,
-                },
-                completion = {
-                  callSnippet = "Replace",
-                },
-                doc = {
-                  privateName = { "^_" },
-                },
-                hint = {
-                  enable = true,
-                  setType = false,
-                  paramType = true,
-                  paramName = "Disable",
-                  semicolon = "Disable",
-                  arrayIndex = "Disable",
-                },
-              },
-            },
           },
         },
         -- you can do any additional lsp server setup here
@@ -209,6 +87,27 @@ return {
           tsserver = function()
             -- disable tsserver
             return true
+          end,
+          -- gopls = function(_, opts)
+          --   LazyVim.lsp.on_attach(function(client, buffer) end, "gopls")
+
+          gopls = function(_, opts)
+            -- workaround for gopls not supporting semanticTokensProvider
+            -- https://github.com/golang/go/issues/54531#issuecomment-1464982242
+            LazyVim.lsp.on_attach(function(client, _)
+              if not client.server_capabilities.semanticTokensProvider then
+                local semantic = client.config.capabilities.textDocument.semanticTokens
+                client.server_capabilities.semanticTokensProvider = {
+                  full = true,
+                  legend = {
+                    tokenTypes = semantic.tokenTypes,
+                    tokenModifiers = semantic.tokenModifiers,
+                  },
+                  range = true,
+                }
+              end
+            end, "gopls")
+            -- end workaround
           end,
           vtsls = function(_, opts)
             LazyVim.lsp.on_attach(function(client, buffer)

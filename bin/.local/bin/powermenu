@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-chosen=$(printf "  Power Off\n  Restart\n  Suspend\n  Hibernate\n  Log Out\n  Lock" | rofi -dmenu -i -p "Powe options: ")
+chosen=$(printf "  Power Off\n  Restart\n  Suspend\n  Hibernate\n  Log Out\n  Lock" | rofi -dmenu -i -p "Power options: ")
 
 case "$chosen" in
 	"  Power Off") poweroff ;;

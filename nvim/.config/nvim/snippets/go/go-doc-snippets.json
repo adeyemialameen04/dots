@@ -1,0 +1,123 @@
+{
+  "Swagger Operation": {
+    "prefix": "swagop",
+    "body": [
+      "// @Summary ${1:Brief summary}",
+      "// @Description ${2:Detailed description}",
+      "// @Tags ${3:tag-name}",
+      "// @Accept ${4|json,xml,plain|}",
+      "// @Produce ${5|json,xml,plain|}",
+      "// @Param ${6:param_name} ${7|query,path,body,header,formData|} ${8:type} ${9|true,false|} \"${10:description}\"",
+      "// @Success 200 {object} ${11:ResponseType}",
+      "// @Failure 400 {object} ${12:ErrorResponse}",
+      "// @Router /${13:path} [${14|get,post,put,delete|}]"
+    ],
+    "description": "Swagger operation documentation"
+  },
+  "Swagger Model": {
+    "prefix": "swagmodel",
+    "body": [
+      "// @Description ${1:Model description}",
+      "// @Description ${2:Additional details}",
+      "type ${3:ModelName} struct {",
+      "\t// @Description ${4:field description}",
+      "\t// @Example ${5:example value}",
+      "\t${6:FieldName} ${7:type} `json:\"${8:json_name}\" binding:\"${9:required}\"`$0",
+      "}"
+    ],
+    "description": "Swagger model documentation"
+  },
+  "API Handler Doc": {
+    "prefix": "apidoc",
+    "body": [
+      "// ${1:HandlerName} godoc",
+      "// @Summary ${2:Brief summary}",
+      "// @Description ${3:Detailed description}",
+      "// @Accept json",
+      "// @Produce json",
+      "// @Param Authorization header string true \"Bearer {token}\"",
+      "// @Success 200 {object} ${4:ResponseType} \"Success response\"",
+      "// @Failure 400 {object} ${5:ErrorResponse} \"Bad request\"",
+      "// @Failure 401 {object} ${6:ErrorResponse} \"Unauthorized\"",
+      "// @Failure 500 {object} ${7:ErrorResponse} \"Internal server error\"",
+      "// @Router /${8:path} [${9|get,post,put,delete|}]",
+      "func ${1:HandlerName}(c *gin.Context) {",
+      "\t$0",
+      "}"
+    ],
+    "description": "API handler with full documentation"
+  },
+  "CRUD API Docs": {
+    "prefix": "swagcrud",
+    "body": [
+      "// @Summary Create a new ${1:resource}",
+      "// @Description Create a new ${1:resource} with the provided data",
+      "// @Tags ${1:resource}",
+      "// @Accept json",
+      "// @Produce json",
+      "// @Param data body ${2:RequestType} true \"${1:Resource} data\"",
+      "// @Success 201 {object} ${3:ResponseType}",
+      "// @Failure 400 {object} ErrorResponse",
+      "// @Router /${4:path} [post]",
+      "",
+      "// @Summary Get a ${1:resource} by ID",
+      "// @Description Retrieve a ${1:resource} by its ID",
+      "// @Tags ${1:resource}",
+      "// @Accept json",
+      "// @Produce json",
+      "// @Param id path string true \"${1:Resource} ID\"",
+      "// @Success 200 {object} ${3:ResponseType}",
+      "// @Failure 404 {object} ErrorResponse",
+      "// @Router /${4:path}/{id} [get]",
+      "",
+      "// @Summary Update a ${1:resource}",
+      "// @Description Update an existing ${1:resource} with the provided data",
+      "// @Tags ${1:resource}",
+      "// @Accept json",
+      "// @Produce json",
+      "// @Param id path string true \"${1:Resource} ID\"",
+      "// @Param data body ${2:RequestType} true \"Updated ${1:resource} data\"",
+      "// @Success 200 {object} ${3:ResponseType}",
+      "// @Failure 400 {object} ErrorResponse",
+      "// @Failure 404 {object} ErrorResponse",
+      "// @Router /${4:path}/{id} [put]",
+      "",
+      "// @Summary Delete a ${1:resource}",
+      "// @Description Delete a ${1:resource} by its ID",
+      "// @Tags ${1:resource}",
+      "// @Accept json",
+      "// @Produce json",
+      "// @Param id path string true \"${1:Resource} ID\"",
+      "// @Success 204 \"No Content\"",
+      "// @Failure 404 {object} ErrorResponse",
+      "// @Router /${4:path}/{id} [delete]"
+    ],
+    "description": "Complete CRUD API documentation"
+  },
+  "Error Response Model": {
+    "prefix": "errmodel",
+    "body": [
+      "// ErrorResponse represents a standard error response",
+      "// @Description Standard error response format",
+      "type ErrorResponse struct {",
+      "\t// @Description Error code",
+      "\tCode int `json:\"code\" example:\"400\"`",
+      "\t// @Description Error message",
+      "\tMessage string `json:\"message\" example:\"Invalid request parameters\"`",
+      "\t// @Description Detailed error information",
+      "\tDetails interface{} `json:\"details,omitempty\"`",
+      "}"
+    ],
+    "description": "Standard error response model"
+  },
+  "Pagination Params": {
+    "prefix": "swagpage",
+    "body": [
+      "// @Param page query integer false \"Page number (default: 1)\" minimum(1) default(1)",
+      "// @Param limit query integer false \"Items per page (default: 10)\" minimum(1) maximum(100) default(10)",
+      "// @Param sort query string false \"Sort field (default: created_at)\" Enums(created_at, updated_at, id)",
+      "// @Param order query string false \"Sort order (default: desc)\" Enums(asc, desc)"
+    ],
+    "description": "Common pagination parameters"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "name": "react-native.json",
+  "contributes": {
+    "snippets": [
+      {
+        "language": [
+          "typescript"
+        ],
+        "path": "./react-native.json"
+      }
+    ]
+  }
+}
